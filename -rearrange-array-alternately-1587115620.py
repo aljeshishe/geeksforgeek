@@ -1,4 +1,10 @@
 # https://practice.geeksforgeeks.org/problems/-rearrange-array-alternately-1587115620/1
+# key idea here is to store 2 elements in one
+# mx = max(item) + 1
+# encoded_v = v1 + v2 * mx
+# v1 = encoded_v % mx
+# v2 = encoded_v / mx
+
 def f(arr):
     if len(arr) < 2:
         return arr
@@ -8,7 +14,7 @@ def f(arr):
     mx = arr[-1] + 1
     for pos in range(l):
         if pos % 2:
-            arr[pos] += (arr[lo] % mx) * mx
+            arr[pos] += (arr[lo] % mx) * mx  # as item could be already encoded, we get v1 with arr[lo] % mx
             lo += 1
         else:
             arr[pos] += (arr[hi] % mx) * mx
